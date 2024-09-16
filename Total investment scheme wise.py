@@ -1,24 +1,20 @@
 import json
 from collections import defaultdict
 
-# Load the transaction data
 with open('transaction_detail.json') as f:
     data = json.load(f)
 
 transactions = data["data"][0]["dtTransaction"]
 
-# Dictionary to store total investment per scheme
-scheme_investment = defaultdict(float)
+scheme_investment = defaultdict(float) 
 
-# Loop through transactions and filter only purchase transactions
 for transaction in transactions:
-    trxn_type = transaction['trxnDesc'].lower()  # Convert transaction description to lowercase for uniformity
-    trxn_amount = float(transaction['trxnAmount'])  # Transaction amount
+    trxn_amount = float(transaction['trxnAmount'])  
     
     # Consider only purchases and positive amounts
-    if 'purchase' in trxn_type and trxn_amount > 0:
-        scheme_name = transaction['schemeName'].strip().lower()  # Normalize scheme names by stripping spaces and converting to lowercase
-        scheme_investment[scheme_name] += trxn_amount  # Accumulate the investment for the scheme
+    if  trxn_amount > 0:
+        scheme_name = transaction['schemeName'].strip().lower()  
+        scheme_investment[scheme_name] += trxn_amount  
 
 # Check if all schemes are captured
 print(f"Total distinct schemes: {len(scheme_investment)}")

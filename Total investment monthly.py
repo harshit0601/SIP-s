@@ -14,11 +14,10 @@ def get_year_month(date_str):
 monthly_investment = defaultdict(float)
 
 for transaction in transactions:
-    trxn_type = transaction['trxnDesc'].lower()
     trxn_amount = float(transaction['trxnAmount'])
     
     # Only consider purchase transactions 
-    if 'purchase' in trxn_type and trxn_amount > 0:
+    if trxn_amount > 0:
         year_month = get_year_month(transaction['trxnDate'])
         monthly_investment[year_month] += trxn_amount
 
