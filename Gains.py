@@ -61,9 +61,8 @@ def fetch_current_nav(scheme_name: str) -> Optional[float]:
             print(f"Error fetching NAV for {scheme_name}: {e}")
     return None
 
-# Load the JSON data for transactions
-file_path = 'transaction_detail.json'
-with open(file_path, 'r') as f:
+
+with open('transaction_detail.json') as f:
     data = json.load(f)
 
 # Part 1: Load JSON and calculate remaining units and total value
